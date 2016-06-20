@@ -1,0 +1,9 @@
+{
+  "name": "city-bus-stops",
+  "version": "0.0.1",
+  "dependencies": {
+    "mongoose": "latest",
+    "request": "latest",
+    "bluebird": "latest"
+  }
+}
