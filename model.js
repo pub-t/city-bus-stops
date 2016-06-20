@@ -14,8 +14,8 @@ mongoose.connect(uristring, function (error) {
 var busSchema = new mongoose.Schema({
     id: {type:Number, index:{unique:true}},
     name: String,
-   {type:Number, type:{unique:true}},
-   {type:Number, type:{unique:true}}
+    lat: {type:Number, type:{unique:true}},
+    lon: {type:Number, type:{unique:true}}
 });
 
 var relationSchema = new mongoose.Schema({
@@ -34,9 +34,9 @@ var relationSchema = new mongoose.Schema({
 
 
 
-const Bus =  mongoose.model('buses', busSchema);
+var Bus =  mongoose.model('buses', busSchema);
 
-const Relation =  mongoose.model('relations', relationSchema);
+var Relation =  mongoose.model('relations', relationSchema);
 
 module.exports.Bus = Bus;
 module.exports.Relation = Relation;
