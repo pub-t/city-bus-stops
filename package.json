@@ -1,0 +1,17 @@
+{
+  "name": "city-bus-stops",
+  "version": "0.0.1",
+  "dependencies": {
+    "bluebird": "latest",
+    "eslint-plugin-react": "^5.2.2",
+    "mongoose": "latest",
+    "request": "latest"
+  },
+  "devDependencies": {
+    "eslint": "^2.12.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.4.2",
+    "eslint-plugin-react": "^5.2.2"
+  }
+}
