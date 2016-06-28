@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "request": "^3.9.3"
-  }
+  },
   "devDependencies": {
     "osmtogeojson": "^3.9.3"
   }
