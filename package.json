@@ -1,0 +1,14 @@
+{
+  "name": "city-bus-stops",
+  "description": "fetch bus_stops and save in format geoJSON",
+  "version": "0.0.1",
+  "scripts": {
+    "start": "node api.js"
+  },
+  "dependencies": {
+    "request": "^3.9.3"
+  }
+  "devDependencies": {
+    "osmtogeojson": "^3.9.3"
+  }
+}

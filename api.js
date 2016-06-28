@@ -1,5 +1,5 @@
-const osm = require('./osm');
-const busStopStream = osm.fetchCityBusStops('Hrodna');
+var osm = require('./osm');
+var busStopStream = osm.fetchCityBusStops('Hrodna');
 var osmtogeojson = require('osmtogeojson')
 var fs = require('fs');
 
