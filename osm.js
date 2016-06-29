@@ -22,7 +22,7 @@ var save = function (data) {
  wstream.end();
 
  wstream.on('finish', function() {
-  console.log("well done..");
+  console.log("well done, bus stops add in bus_stops.json");
  });
 
  wstream.on('error', function(err){
@@ -30,4 +30,5 @@ var save = function (data) {
  });
 };
 
-module.exports.fetchCityBusStops = fetchCityBusStops;
+//enter the name of the city in english (Hrodna, Minsk..)
+fetchCityBusStops('Hrodna');

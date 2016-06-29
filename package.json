@@ -3,7 +3,7 @@
   "description": "fetch bus_stops and save in format geoJSON",
   "version": "0.0.1",
   "scripts": {
-    "start": "node api.js"
+    "start": "node osm.js"
   },
   "dependencies": {
     "osmtogeojson": "^2.2.11",
