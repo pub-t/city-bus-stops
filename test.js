@@ -9,8 +9,10 @@ describe('check status request on overpass-api (city = Hrodna)', function(){
 	 var data = JSON.parse(body);
 	 var bus_stops = data.elements;
 	 bus_stops.forEach(function(elem) {
-		expect(elem.id).to.equal(320409795);
-		done();
+		if(elem.id==320409795) {
+		 expect(elem.id).to.equal(320409795);
+		 done();
+		}
 	 });
 	});
  })
