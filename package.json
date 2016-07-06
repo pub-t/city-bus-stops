@@ -20,6 +20,7 @@
     "eslint-plugin-jsx-a11y": "^1.5.3",
     "eslint-plugin-react": "^5.2.2",
     "husky": "^0.11.4",
-    "mocha": "^2.5.3"
+    "mocha": "^2.5.3",
+    "through2": "2.0.1"
   }
 }
