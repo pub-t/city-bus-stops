@@ -1,14 +1,15 @@
 var request = require('request');
 var expect = require('chai').expect;
 var osm = require('../osm');
+var busStopStream = osm.fetchCityBusStops('Hrodna');
 
-describe('check status request on overpass-api (city = Hrodna)', function () {
-  it('should contain node with id 320409795', function (done) {
-    osm('Hrodno', function (body) {
-      var data = JSON.parse(body);
-      var bus_stops = data.elements;
-      expect(bus_stops.length).to.not.equal(0);
-      done();
-    })
-  }).timeout(5000);
+describe('check return object of fetchCityBusStops function ', function () {
+  it('should return request object', function () {
+    var obj = busStopStream;
+    expect(obj).to.be.an('object');
+    });
+  it('should contain uri key', function () {
+    var obj = busStopStream;
+    expect(obj).to.include.keys('uri');
+  });
 });
