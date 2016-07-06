@@ -1,5 +1,7 @@
+require('buffer-concat');
 var osmtogeojson = require('osmtogeojson');
 var through = require('through2');
+var concat = require('concat-stream');
 var buffer = '';
 
 var transform = function (cb) {
@@ -8,7 +10,7 @@ var transform = function (cb) {
 };
 
 var pushData = function (data, enc, cb) {
-  buffer += data;
+  buffer = Buffer.concat([new Buffer(buffer), new Buffer(data)]);
   cb();
 };
 

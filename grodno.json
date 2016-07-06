@@ -1746,7 +1746,7 @@
           "highway": "bus_stop",
           "name": "Механический завод",
           "name:be": "Механічны завод",
-          "name:ru": "Механически�� завод",
+          "name:ru": "Механический завод",
           "public_transport": "platform",
           "source": "survey"
         },
@@ -1984,7 +1984,7 @@
           "highway": "bus_stop",
           "name": "проспект Клецкова",
           "name:be": "праспект Кляцкога",
-          "name:ru": "��роспект Клецкова",
+          "name:ru": "проспект Клецкова",
           "public_transport": "platform",
           "shelter": "yes",
           "trolleybus": "yes"
@@ -5981,7 +5981,7 @@
           "bench": "yes",
           "bus": "yes",
           "highway": "bus_stop",
-          "name": "гост��ница \"Гродно\"",
+          "name": "гостиница \"Гродно\"",
           "public_transport": "platform",
           "shelter": "yes",
           "trolleybus": "yes"
@@ -7726,7 +7726,7 @@
           "bench": "yes",
           "bus": "yes",
           "highway": "bus_stop",
-          "name": "Аптечный скла��",
+          "name": "Аптечный склад",
           "name:be": "Аптэчны склад",
           "name:ru": "Аптечный склад",
           "public_transport": "platform",
@@ -9745,7 +9745,7 @@
         "tags": {
           "bus": "yes",
           "highway": "bus_stop",
-          "name": "база \"Галан��ерея\"",
+          "name": "база \"Галантерея\"",
           "public_transport": "platform"
         },
         "relations": [],
