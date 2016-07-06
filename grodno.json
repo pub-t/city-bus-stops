@@ -1746,7 +1746,7 @@
           "highway": "bus_stop",
           "name": "Механический завод",
           "name:be": "Механічны завод",
-          "name:ru": "Механический завод",
+          "name:ru": "Механически�� завод",
           "public_transport": "platform",
           "source": "survey"
         },
@@ -1984,7 +1984,7 @@
           "highway": "bus_stop",
           "name": "проспект Клецкова",
           "name:be": "праспект Кляцкога",
-          "name:ru": "проспект Клецкова",
+          "name:ru": "��роспект Клецкова",
           "public_transport": "platform",
           "shelter": "yes",
           "trolleybus": "yes"
@@ -3690,7 +3690,7 @@
           "bench": "yes",
           "bus": "yes",
           "highway": "bus_stop",
-          "name": "Пог��раны",
+          "name": "Погораны",
           "name:be": "Пагараны",
           "name:ru": "Погораны",
           "public_transport": "platform",
@@ -3924,7 +3924,7 @@
         "tags": {
           "bus": "yes",
           "highway": "bus_stop",
-          "name": "Южная у��ица",
+          "name": "Южная улица",
           "name:be": "Паўднёвая вуліца",
           "name:ru": "Южная улица",
           "public_transport": "platform"
@@ -5981,7 +5981,7 @@
           "bench": "yes",
           "bus": "yes",
           "highway": "bus_stop",
-          "name": "гостиница \"Гродно\"",
+          "name": "гост��ница \"Гродно\"",
           "public_transport": "platform",
           "shelter": "yes",
           "trolleybus": "yes"
@@ -6437,7 +6437,7 @@
           "highway": "bus_stop",
           "name": "Электротехнический колледж",
           "name:be": "Электратэхнічны каледж",
-          "name:ru": "Элек��ротехнический колледж",
+          "name:ru": "Электротехнический колледж",
           "public_transport": "platform",
           "trolleybus": "yes"
         },
@@ -7726,7 +7726,7 @@
           "bench": "yes",
           "bus": "yes",
           "highway": "bus_stop",
-          "name": "Аптечный склад",
+          "name": "Аптечный скла��",
           "name:be": "Аптэчны склад",
           "name:ru": "Аптечный склад",
           "public_transport": "platform",
@@ -8277,7 +8277,7 @@
           "highway": "bus_stop",
           "name": "Фабричный",
           "name:be": "Фабрычны",
-          "name:ru": "Фабричн��й",
+          "name:ru": "Фабричный",
           "public_transport": "platform"
         },
         "relations": [],
@@ -9745,7 +9745,7 @@
         "tags": {
           "bus": "yes",
           "highway": "bus_stop",
-          "name": "база \"Галантерея\"",
+          "name": "база \"Галан��ерея\"",
           "public_transport": "platform"
         },
         "relations": [],
@@ -10374,7 +10374,7 @@
           "bus": "yes",
           "highway": "bus_stop",
           "int_name": "vulica Maslakova",
-          "name": "ул��ца Маслакова",
+          "name": "улица Маслакова",
           "name:be": "вуліца Маслакова",
           "name:ru": "улица Маслакова",
           "public_transport": "platform",

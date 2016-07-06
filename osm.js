@@ -3,9 +3,14 @@ var request = require('request');
 var fetchCityBusStops = function (name) {
   var uri = 'http://overpass-api.de/api/interpreter?data=[out:json][timeout:25];area["place"="city"]' +
     '["name:en"="' + name + '"];(node["highway"="bus_stop"](area););out;';
-  var req = request(uri)
+  var req = request
+    .get(uri, {timeout: 20000})
     .on('error', function (err) {
-      console.error('Request error' + err.message);
+      if(err.code === 'ETIMEDOUT'){
+        console.log('Error: (long request) ' + err.message);
+      } else{
+        console.log(err);
+      }
     })
     .on('response', function (response) {
       console.log('Request status: ' + response.statusCode);
