@@ -12,8 +12,7 @@
     "bunyan": "1.8.1",
     "mississippi": "1.2.0",
     "osmtogeojson": "^2.2.11",
-    "request": "^2.72.0",
-    "through2": "2.0.1"
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",

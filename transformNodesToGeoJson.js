@@ -1,6 +1,6 @@
 require('buffer').Buffer
 var osmtogeojson = require('osmtogeojson');
-var through = require('through2');
+var miss = require('mississippi');
 var buffer = '';
 
 var transform = function (cb) {
@@ -22,6 +22,6 @@ var pushData = function (data, enc, cb) {
   }
 };
 
-var transformToGeoJson = through(pushData, transform);
+var transformToGeoJson = miss.through(pushData, transform);
 
 module.exports = transformToGeoJson;

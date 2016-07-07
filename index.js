@@ -9,19 +9,17 @@ var log = require('bunyan').createLogger({
   src: true
 });
 
+function handleError(error) {
+  log.error(error);
+}
 
 busStopStream
-  .on('error', function (error) {
-    log.error('Request exception ' + error);
-  })
+  .on('error', handleError)
   .on('response', function (response) {
     log.info(response);
   })
   .pipe(transformNodesToGeoJson)
-  .on('error', function (error) {
-    log.error(error);
-  })
+  .on('error', handleError)
   .pipe(ws)
-  .on('error', function (error) {
-    log.error(error);
-  });
+  .on('error', handleError);
+

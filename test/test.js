@@ -1,28 +1,30 @@
 var request = require('request');
 var expect = require('chai').expect;
-var osm = require('../osm');
-var busStopStream = osm.fetchCityBusStops;
+var fetchCityBusStops = require('../osm').fetchCityBusStops;
 var transformToGeoJson = require('../transformNodesToGeoJson');
 var isStream = require('isstream');
-var osmStream = busStopStream('Hrodna');
 
-describe('Check the object returned from the fetchCityBusStops', function () {
-  it('Should return stream', function () {
-    expect(isStream(osmStream)).to.true;
+describe('Check fetchCityBusStops', function () {
+  it('should return stream', function () {
+    var busStopsStream = fetchCityBusStops('Hrodna');
+    expect(isStream(busStopsStream)).to.true;
     });
   it('should contain uri key', function () {
-    expect(osmStream).to.include.keys('uri');
+    var busStopsStream = fetchCityBusStops('Hrodna');
+    expect(busStopsStream).to.include.keys('uri');
   });
 });
 
-describe('Check the object returned from the transformToGeoJson', function () {
-
-  var transformStream = osmStream.pipe(transformToGeoJson);
-  it('Should return stream', function () {
+describe('Check transformToGeoJson', function () {
+  var busStopsStream = fetchCityBusStops('Hrodna');
+  var transformStream = busStopsStream.pipe(transformToGeoJson);
+  it('should return stream', function () {
     expect(isStream(transformStream)).to.true;
   });
 
-  it('Shoud contain flush property', function () {
+  it('should contain flush property', function () {
+    var busStopsStream = fetchCityBusStops('Hrodna');
+    var transformStream = busStopsStream.pipe(transformToGeoJson);
     expect(transformStream).to.include.keys('_flush')
   })
 });
