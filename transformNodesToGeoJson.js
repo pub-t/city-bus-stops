@@ -13,15 +13,14 @@ var transform = function (cb) {
   }
 };
 
-var pushData = function (data, enc, cb) {
+var pushData = function (data, cb) {
   try {
-    buffer = Buffer.concat([new Buffer(buffer), new Buffer(data)]);
-    cb();
+    cb(null, data);
   } catch (error) {
     cb(error);
   }
 };
 
-var transformToGeoJson = miss.through(pushData, transform);
+var transformToGeoJson = miss.through(miss.concat(pushData), transform);
 
 module.exports = transformToGeoJson;
