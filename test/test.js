@@ -5,18 +5,18 @@ var transformToGeoJson = require('../osm/transformNodesToGeoJson');
 var isStream = require('isstream');
 var nconf = require('../config');
 
-describe('Check fetchCityBusStops', function () {
-  it('should return stream', function () {
+describe('Result of the fetchCityBusStops function', function () {
+  it('should be a stream', function () {
     var busStopsStream = fetchCityBusStops('Hrodna', nconf.get('requestOptions'));
     expect(isStream(busStopsStream)).to.true;
     });
-  it('should contain uri key', function () {
+  it('should contain field "URI"', function () {
     var busStopsStream = fetchCityBusStops('Hrodna', nconf.get('requestOptions'));
     expect(busStopsStream).to.include.keys('uri');
   });
 });
 
-describe('Check transformToGeoJson', function () {
+describe('Result of the transformToGeoJson function', function () {
   var busStopsStream = fetchCityBusStops('Hrodna', nconf.get('requestOptions'));
   var transformStream = busStopsStream.pipe(transformToGeoJson);
   it('should return stream', function () {
