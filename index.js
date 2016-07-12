@@ -1,13 +1,21 @@
 var nconf = require('./config');
+
 var osm = require('./osm/osm');
-osmBusStopStream = osm.fetchCityBusStops('Hrodna', nconf.get('request_time'));
+var raspAp1 = require('./rasp.ap1/rasp.ap1');
+
+var osmBusStopStream = osm.fetchCityBusStops('Hrodna', nconf.get('request_time'));
+var raspAp1BusStopStream = raspAp1.loadCityBusStops(nconf.get('rasp.ap1_url'), nconf.get('request_time'));
+
 var fs = require('fs');
-var ws = fs.createWriteStream('grodno.json');
+var osmWriteStream = fs.createWriteStream('./busStops/osmGrodno.json');
+var raspAp1WriteStream = fs.createWriteStream('./busStops/raspAp1Grodno.json');
+
 var transformNodesToGeoJson = require('./osm/transformNodesToGeoJson');
+var parseBusStops = require('./rasp.ap1/parseBusStops');
 
 var log = require('bunyan').createLogger({
-  name: 'cityBusStops',
-  src: true
+  name: nconf.get('name'),
+  src: nconf.get('logSrc')
 });
 
 function handleError(error) {
@@ -21,6 +29,15 @@ osmBusStopStream
   })
   .pipe(transformNodesToGeoJson)
   .on('error', handleError)
-  .pipe(ws)
+  .pipe(osmWriteStream)
   .on('error', handleError);
 
+
+raspAp1BusStopStream
+  .on('error', handleError)
+  .on('response', function (response) {
+    log.info(response);
+  })
+  .pipe(parseBusStops)
+  .on('error', handleError)
+  .pipe(raspAp1WriteStream);

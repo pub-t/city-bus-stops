@@ -19,7 +19,7 @@ TransformNodesToGeoJson.prototype._read = function readBytes(n) {
 
 TransformNodesToGeoJson.prototype._write = function (chunk, enc, cb) {
   if (this.readFlag === true) {
-    this.push(this.buffer);
+    this.push(chunk);
     this.buffer= [];
   } else {
     this.buffer = Buffer.concat([new Buffer(this.buffer), new Buffer(chunk)]);
