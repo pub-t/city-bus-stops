@@ -1,8 +1,9 @@
-var osm = require('./osm');
-osmBusStopStream = osm.fetchCityBusStops('Hrodna');
+var nconf = require('./config');
+var osm = require('./osm/osm');
+osmBusStopStream = osm.fetchCityBusStops('Hrodna', nconf.get('request_time'));
 var fs = require('fs');
 var ws = fs.createWriteStream('grodno.json');
-var transformNodesToGeoJson = require('./transformNodesToGeoJson');
+var transformNodesToGeoJson = require('./osm/transformNodesToGeoJson');
 
 var log = require('bunyan').createLogger({
   name: 'cityBusStops',

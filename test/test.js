@@ -1,35 +1,36 @@
 var request = require('request');
 var expect = require('chai').expect;
-var fetchCityBusStops = require('../osm').fetchCityBusStops;
-var transformToGeoJson = require('../transformNodesToGeoJson');
+var fetchCityBusStops = require('../osm/osm').fetchCityBusStops;
+var transformToGeoJson = require('../osm/transformNodesToGeoJson');
 var isStream = require('isstream');
+var nconf = require('../config');
 
 describe('Check fetchCityBusStops', function () {
   it('should return stream', function () {
-    var busStopsStream = fetchCityBusStops('Hrodna');
+    var busStopsStream = fetchCityBusStops('Hrodna', nconf.get('request_time'));
     expect(isStream(busStopsStream)).to.true;
     });
   it('should contain uri key', function () {
-    var busStopsStream = fetchCityBusStops('Hrodna');
+    var busStopsStream = fetchCityBusStops('Hrodna', nconf.get('request_time'));
     expect(busStopsStream).to.include.keys('uri');
   });
 });
 
 describe('Check transformToGeoJson', function () {
-  var busStopsStream = fetchCityBusStops('Hrodna');
+  var busStopsStream = fetchCityBusStops('Hrodna', nconf.get('request_time'));
   var transformStream = busStopsStream.pipe(transformToGeoJson);
   it('should return stream', function () {
     expect(isStream(transformStream)).to.true;
   });
 
   it('should be readable stream', function () {
-    var busStopsStream = fetchCityBusStops('Hrodna');
+    var busStopsStream = fetchCityBusStops('Hrodna', nconf.get('request_time'));
     var transformStream = busStopsStream.pipe(transformToGeoJson);
     expect(transformStream).to.have.any.keys('readable', true);
   });
 
   it('should be writable stream', function () {
-    var busStopsStream = fetchCityBusStops('Hrodna');
+    var busStopsStream = fetchCityBusStops('Hrodna', nconf.get('request_time'));
     var transformStream = busStopsStream.pipe(transformToGeoJson);
     expect(transformStream).to.have.any.keys('writable', true);
   })
