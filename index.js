@@ -1,5 +1,5 @@
 var osm = require('./osm');
-var busStopStream = osm.fetchCityBusStops('Hrodna');
+osmBusStopStream = osm.fetchCityBusStops('Hrodna');
 var fs = require('fs');
 var ws = fs.createWriteStream('grodno.json');
 var transformNodesToGeoJson = require('./transformNodesToGeoJson');
@@ -13,7 +13,7 @@ function handleError(error) {
   log.error(error);
 }
 
-busStopStream
+osmBusStopStream
   .on('error', handleError)
   .on('response', function (response) {
     log.info(response);

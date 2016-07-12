@@ -22,9 +22,15 @@ describe('Check transformToGeoJson', function () {
     expect(isStream(transformStream)).to.true;
   });
 
-  it('should contain flush property', function () {
+  it('should be readable stream', function () {
     var busStopsStream = fetchCityBusStops('Hrodna');
     var transformStream = busStopsStream.pipe(transformToGeoJson);
-    expect(transformStream).to.include.keys('_flush')
+    expect(transformStream).to.have.any.keys('readable', true);
+  });
+
+  it('should be writable stream', function () {
+    var busStopsStream = fetchCityBusStops('Hrodna');
+    var transformStream = busStopsStream.pipe(transformToGeoJson);
+    expect(transformStream).to.have.any.keys('writable', true);
   })
 });
