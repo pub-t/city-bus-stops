@@ -3,37 +3,40 @@ var util = require('util');
 var Duplex = require('stream').Duplex;
 var osmtogeojson = require('osmtogeojson');
 
-function transformNodesToGeoJson(options) {
-  if (!(this instanceof transformNodesToGeoJson)) {
-    return new transformNodesToGeoJson(options)
+function TransformNodesToGeoJson(options) {
+  if (!(this instanceof TransformNodesToGeoJson)) {
+    return new TransformNodesToGeoJson(options)
   }
   Duplex.call(this, options);
   this.buffer = [];
   this.readFlag = false;
 }
 
-util.inherits(transformNodesToGeoJson, Duplex);
+util.inherits(TransformNodesToGeoJson, Duplex);
 
-transformNodesToGeoJson.prototype._read = function readBytes(n) {
-  console.log('Buffer length: ', this.buffer.length);
+TransformNodesToGeoJson.prototype._read = function readBytes(n) {
 };
 
-transformNodesToGeoJson.prototype._write = function (chunk, enc, cb) {
-  this.buffer = Buffer.concat([new Buffer(this.buffer), new Buffer(chunk)]);
-  if (this.readFlag == true) {
+TransformNodesToGeoJson.prototype._write = function (chunk, enc, cb) {
+  if (this.readFlag === true) {
     this.push(this.buffer);
     this.buffer= [];
-  } 
+  } else {
+    this.buffer = Buffer.concat([new Buffer(this.buffer), new Buffer(chunk)]);
+  }
   cb();
 };
 
-var transformObject = new transformNodesToGeoJson();
-transformObject
+function transformNodes(data) {
+  return JSON.stringify(osmtogeojson(JSON.parse(data.toString())))
+}
+
+var transformNodesToGeoJsonObject = new TransformNodesToGeoJson();
+transformNodesToGeoJsonObject
   .on('finish', function () {
-    transformObject.buffer = JSON.stringify(osmtogeojson(JSON.parse(transformObject.buffer.toString())));
-    transformObject.readFlag = true;
-    transformObject.write(transformObject.buffer.toString());
+    transformNodesToGeoJsonObject.buffer = transformNodes(transformNodesToGeoJsonObject.buffer);
+    transformNodesToGeoJsonObject.readFlag = true;
+    transformNodesToGeoJsonObject.write(transformNodesToGeoJsonObject.buffer.toString());
   });
 
-
-module.exports = transformObject;
+module.exports = transformNodesToGeoJsonObject;
