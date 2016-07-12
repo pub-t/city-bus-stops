@@ -1,6 +1,10 @@
 {
   "rasp.ap1_url": "http://rasp.ap1.by/",
-  "request_time": 20000,
-  "name": "cityBusStops",
-  "logSrc": true
+  "logOptions": {
+    "name": "cityBusStops",
+    "logSrc": true
+  },
+  "requestOptions": {
+    "time": 20000
+  }
 }

@@ -1,4 +1,3 @@
-require('buffer').Buffer
 var util = require('util');
 var Duplex = require('stream').Duplex;
 var osmtogeojson = require('osmtogeojson');
