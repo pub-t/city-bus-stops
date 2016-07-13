@@ -9,6 +9,11 @@ function parseCityBusStops(options) {
   Duplex.call(this, options);
   this.buffer = [];
   this.writeFlag = false;
+  this.on('finish', function () {
+    this.buffer = parseBusStops(this.buffer);
+    this.writeFlag = true;
+    this.write(this.buffer.toString());
+  })
 }
 
 util.inherits(parseCityBusStops, Duplex);
@@ -20,6 +25,7 @@ parseCityBusStops.prototype._write = function (chunk, enc, cb) {
   if (this.writeFlag === true) {
     this.push(chunk);
     this.buffer = [];
+    this.writeFlag = false;
   } else {
     this.buffer = Buffer.concat([new Buffer(this.buffer), new Buffer(chunk)]);
   }
@@ -49,12 +55,4 @@ function parseBusStops(data) {
   return JSON.stringify(busStops);
 }
 
-var parseCityBusStopsObject = new parseCityBusStops();
-parseCityBusStopsObject
-  .on('finish', function () {
-    parseCityBusStopsObject.buffer = parseBusStops(parseCityBusStopsObject.buffer);
-    parseCityBusStopsObject.writeFlag = true;
-    parseCityBusStopsObject.write(parseCityBusStopsObject.buffer.toString());
-  });
-
-module.exports = parseCityBusStopsObject;
+module.exports = new parseCityBusStops();

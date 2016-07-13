@@ -9,6 +9,11 @@ function TransformNodesToGeoJson(options) {
   Duplex.call(this, options);
   this.buffer = [];
   this.readFlag = false;
+  this.on('finish', function () {
+    this.buffer = transformNodes(this.buffer);
+    this.readFlag = true;
+    this.write(this.buffer.toString());
+  });
 }
 
 util.inherits(TransformNodesToGeoJson, Duplex);
@@ -19,7 +24,8 @@ TransformNodesToGeoJson.prototype._read = function readBytes(n) {
 TransformNodesToGeoJson.prototype._write = function (chunk, enc, cb) {
   if (this.readFlag === true) {
     this.push(chunk);
-    this.buffer= [];
+    this.buffer = [];
+    this.readFlag = false;
   } else {
     this.buffer = Buffer.concat([new Buffer(this.buffer), new Buffer(chunk)]);
   }
@@ -30,12 +36,4 @@ function transformNodes(data) {
   return JSON.stringify(osmtogeojson(JSON.parse(data.toString())))
 }
 
-var transformNodesToGeoJsonObject = new TransformNodesToGeoJson();
-transformNodesToGeoJsonObject
-  .on('finish', function () {
-    transformNodesToGeoJsonObject.buffer = transformNodes(transformNodesToGeoJsonObject.buffer);
-    transformNodesToGeoJsonObject.readFlag = true;
-    transformNodesToGeoJsonObject.write(transformNodesToGeoJsonObject.buffer.toString());
-  });
-
-module.exports = transformNodesToGeoJsonObject;
+module.exports = new TransformNodesToGeoJson();
