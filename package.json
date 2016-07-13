@@ -1,6 +1,6 @@
 {
   "name": "city-bus-stops",
-  "description": "fetch bus_stops and save in format geoJSON",
+  "description": "fetch city's bus-stops in the geoJSON format, fetch bus-stops from the rasp.ap1.by",
   "version": "0.0.1",
   "scripts": {
     "test": "mocha test/test.js",
