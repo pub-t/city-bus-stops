@@ -2,9 +2,9 @@ var util = require('util');
 var Duplex = require('stream').Duplex;
 var cheerio = require('cheerio');
 
-function parseCityBusStops(options) {
-  if (!(this instanceof parseCityBusStops)) {
-    return new parseCityBusStops(options)
+function ParseCityBusStops(options) {
+  if (!(this instanceof ParseCityBusStops)) {
+    return new ParseCityBusStops(options)
   }
   Duplex.call(this, options);
   this.buffer = [];
@@ -16,12 +16,12 @@ function parseCityBusStops(options) {
   })
 }
 
-util.inherits(parseCityBusStops, Duplex);
+util.inherits(ParseCityBusStops, Duplex);
 
-parseCityBusStops.prototype._read = function readBytes(n) {
+ParseCityBusStops.prototype._read = function readBytes(n) {
 };
 
-parseCityBusStops.prototype._write = function (chunk, enc, cb) {
+ParseCityBusStops.prototype._write = function (chunk, enc, cb) {
   if (this.writeFlag === true) {
     this.push(chunk);
     this.buffer = [];
@@ -55,4 +55,4 @@ function parseBusStops(data) {
   return JSON.stringify(busStops);
 }
 
-module.exports = new parseCityBusStops();
+module.exports = ParseCityBusStops;

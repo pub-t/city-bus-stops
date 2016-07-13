@@ -36,4 +36,4 @@ function transformNodes(data) {
   return JSON.stringify(osmtogeojson(JSON.parse(data.toString())))
 }
 
-module.exports = new TransformNodesToGeoJson();
+module.exports = TransformNodesToGeoJson;

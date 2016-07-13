@@ -10,8 +10,8 @@ var fs = require('fs');
 var osmWriteStream = fs.createWriteStream('./busStops/osmGrodno.json');
 var raspAp1WriteStream = fs.createWriteStream('./busStops/raspAp1Grodno.json');
 
-var transformNodesToGeoJson = require('./osm/transformNodesToGeoJson');
-var parseBusStops = require('./rasp.ap1/parseBusStops');
+var transformNodesToGeoJson = require('./osm/transformNodesToGeoJson')();
+var parseBusStops = require('./rasp.ap1/parseBusStops')();
 
 var log = require('bunyan').createLogger(nconf.get('logOptions'));
 
