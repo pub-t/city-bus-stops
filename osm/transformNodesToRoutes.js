@@ -44,6 +44,24 @@ function searchNode(id, nodes) {
   return name;
 }
 
+function saveRoute(routes, route) {
+  var searchFlag = false;
+  for (var i=0; i < routes.length; i++){
+    if(routes[i].number == route.tags.ref){
+      routes[i].inner_routes.push(route);
+      searchFlag = true;
+    }
+  }
+  if(!searchFlag) {
+    routes.push({
+      number: route.tags.ref,
+      inner_routes: [
+        route
+      ]
+    });
+  }
+}
+
 function searchBusStops(members, nodes) {
   var bus_stops = [];
 
@@ -76,7 +94,7 @@ function transformNodes(data) {
         }
       };
 
-      routes.push(route);
+      saveRoute(routes, route);
     }
   }
 
