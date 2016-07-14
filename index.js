@@ -14,6 +14,7 @@ var osmRoutesStream = fs.createWriteStream(('./busStops/osmRoutes.json'));
 
 var transformNodesToGeoJson = require('./osm/transformNodesToGeoJson')();
 var parseBusStops = require('./rasp.ap1/parseBusStops')();
+var transformNodesToRoutes = require('./osm/transformNodesToRoutes')();
 
 var log = require('bunyan').createLogger(nconf.get('logOptions'));
 
@@ -47,5 +48,7 @@ osmRoutes
   .on('response', function (response) {
     log.info(response)
   })
+  .pipe(transformNodesToRoutes)
+  .on('error', handleError)
   .pipe(osmRoutesStream)
   .on('error', handleError);
