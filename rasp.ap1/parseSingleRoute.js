@@ -12,7 +12,8 @@ function ParseSingleRoute(options) {
   this.on('finish', function () {
     this.buffer = parseSingleRoute(this.buffer);
     this.writeFlag = true;
-    this.write(this.buffer.toString());
+    this.write(this.buffer);
+    this.buffer = [];
   })
 }
 
@@ -33,7 +34,7 @@ ParseSingleRoute.prototype._write = function (chunk, enc, cb) {
 };
 
 function parseSingleRoute(data) {
-  var routes = [];
+  var routes = {};
   var bus_nubmer;
 
   data = cheerio.load(data);
@@ -44,8 +45,7 @@ function parseSingleRoute(data) {
     data(this).children('a').each(function () {
       bus_stops.push(data(this).text())
     });
-
-    routes.push({
+    var route = {
       tags: {
         from: bus_stops[0],
         name: 'Атобус № ' +bus_nubmer + ': ' + bus_stops[0] + ' — ' + bus_stops[bus_stops.length-1],
@@ -57,8 +57,10 @@ function parseSingleRoute(data) {
         bus_stops_count: bus_stops.length,
         members: bus_stops
       }
-    })
-
+    };
+    routes[route.tags.ref] ?
+      (Number(route.bus_stops.bus_stops_count) ? routes[route.tags.ref].push(route) : '') :
+      routes[route.tags.ref] = [route];
   });
 
   return JSON.stringify(routes);

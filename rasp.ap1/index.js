@@ -2,6 +2,8 @@ var nconf = require('../config');
 var raspAp1 = require('./rasp.ap1Requests.js');
 var fs = require('fs');
 var log = require('bunyan').createLogger(nconf.get('logOptions'));
+var async = require('async');
+var through = require('through2');
 
 //rasp.ap1 Streams
 var raspAp1Stream = raspAp1(nconf.get('rasp.ap1_url'), nconf.get('requestOptions'));
@@ -43,6 +45,14 @@ function getRaspAp1Routes() {
     })
     .pipe(parseRoutes)
     .on('error', handleError)
+    .pipe(through(function (chunk, enc, cb) {
+      var self = this;
+      var routes = [];
+      var array = JSON.parse(chunk.toString());
+      // Async function
+      // async.forEach()
+      cb();
+    }))
     .pipe(raspAp1RoutesStream)
     .on('error', handleError);
 }

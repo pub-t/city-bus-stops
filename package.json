@@ -11,12 +11,14 @@
     "precommit": "concurrently \"npm run lint\" "
   },
   "dependencies": {
+    "async": "2.0.1",
     "bunyan": "1.8.1",
     "cheerio": "0.20.0",
     "mississippi": "1.2.0",
     "nconf": "0.8.4",
     "osmtogeojson": "2.2.12",
-    "request": "2.75.0"
+    "request": "2.75.0",
+    "through2": "2.0.1"
   },
   "devDependencies": {
     "chai": "3.5.0",

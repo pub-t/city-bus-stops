@@ -12,7 +12,7 @@ function ParseRoutes(options) {
   this.on('finish', function () {
     this.buffer = parseRoutes(this.buffer);
     this.writeFlag = true;
-    this.write(this.buffer.toString());
+    this.write(this.buffer);
   })
 }
 
