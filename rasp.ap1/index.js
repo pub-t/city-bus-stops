@@ -13,7 +13,7 @@ var raspAp1SingleRouteStream = raspAp1('http://rasp.ap1.by/routedetails.php?rno=
 //Parsers
 var parseBusStops = require('./parseBusStops')();
 var parseRoutes = require('./parseRoutes')();
-var parseSingleRoute = require('./parseSingleRoute')();
+var parseSingleRoute = require('./parseSingleRoute');
 
 //Output files
 var raspAp1BusStopsStream = fs.createWriteStream('./busStops/raspAp1BusStops.json');
@@ -45,14 +45,30 @@ function getRaspAp1Routes() {
     })
     .pipe(parseRoutes)
     .on('error', handleError)
-    .pipe(through(function (chunk, enc, cb) {
-      var self = this;
+    .pipe(through(function (data, enc, cb) {
       var routes = [];
-      var array = JSON.parse(chunk.toString());
-      // Async function
-      // async.forEach()
-      cb();
+      var array = JSON.parse(data.toString());
+      var self = this;
+
+      async.forEachOf(array, function (item, key, asyncCallBack) {
+        raspAp1(nconf.get('rasp.ap1_url') + item.link, nconf.get('requestOptions'))
+          .pipe(parseSingleRoute())
+          .pipe(through(function (chunk, enc, cb) {
+            var obj = JSON.parse(chunk.toString());
+            routes.push(obj);
+
+            cb();
+            asyncCallBack();
+          }));
+
+      }, function (err) {
+        if(err) throw err;
+
+        self.push(JSON.stringify(routes));
+        cb();
+      });
     }))
+    .on('error', handleError)
     .pipe(raspAp1RoutesStream)
     .on('error', handleError);
 }
@@ -63,7 +79,7 @@ function getSingleRoute() {
     .on('response', function (response) {
       log.info(response.statusCode);
     })
-    .pipe(parseSingleRoute)
+    .pipe(parseSingleRoute())
     .on('error', handleError)
     .pipe(raspAp1SingleRoute)
     .on('error', handleError);

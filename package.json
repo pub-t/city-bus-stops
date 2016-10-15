@@ -7,7 +7,7 @@
   "scripts": {
     "test": "mocha test/test.js",
     "start": "node index.js",
-    "lint": "eslint .",
+    "lint": "./node_modules/.bin/eslint .",
     "precommit": "concurrently \"npm run lint\" "
   },
   "dependencies": {

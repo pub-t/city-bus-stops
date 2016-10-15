@@ -58,9 +58,8 @@ function parseSingleRoute(data) {
         members: bus_stops
       }
     };
-    routes[route.tags.ref] ?
-      (Number(route.bus_stops.bus_stops_count) ? routes[route.tags.ref].push(route) : '') :
-      routes[route.tags.ref] = [route];
+
+    Number(route.bus_stops.bus_stops_count) ? routes[route.tags.name] = route : '';
   });
 
   return JSON.stringify(routes);
