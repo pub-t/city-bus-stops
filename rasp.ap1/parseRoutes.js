@@ -18,8 +18,7 @@ function ParseRoutes(options) {
 
 util.inherits(ParseRoutes, Duplex);
 
-ParseRoutes.prototype._read = function readBytes(n) {
-};
+ParseRoutes.prototype._read = function readBytes(n) {};
 
 ParseRoutes.prototype._write = function (chunk, enc, cb) {
   if (this.writeFlag === true) {
@@ -45,13 +44,11 @@ function parseRoutes(data) {
       routeName = a.attr('title').trim();
       link = a.attr('href').trim();
       number = a.text().trim();
-      routes.push(
-        {
-          routeName: routeName,
-          number: number,
-          link: link
-        }
-      );
+      routes.push({
+        routeName: routeName,
+        number: number,
+        link: link
+      });
     }
   });
 

@@ -62,7 +62,7 @@ function getRaspAp1Routes() {
           }));
 
       }, function (err) {
-        if(err) throw err;
+        if (err) throw err;
 
         self.push(JSON.stringify(routes));
         cb();

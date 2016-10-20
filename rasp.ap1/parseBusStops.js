@@ -18,8 +18,7 @@ function ParseCityBusStops(options) {
 
 util.inherits(ParseCityBusStops, Duplex);
 
-ParseCityBusStops.prototype._read = function readBytes(n) {
-};
+ParseCityBusStops.prototype._read = function readBytes(n) {};
 
 ParseCityBusStops.prototype._write = function (chunk, enc, cb) {
   if (this.writeFlag === true) {
@@ -44,12 +43,10 @@ function parseBusStops(data) {
     if (a.attr('title') && a.attr('href')) {
       busStopName = a.attr('title').trim();
       link = a.attr('href').trim();
-      busStops.push(
-        {
-          busStopName: busStopName,
-          link: link
-        }
-      );
+      busStops.push({
+        busStopName: busStopName,
+        link: link
+      });
     }
   });
   return JSON.stringify(busStops);
