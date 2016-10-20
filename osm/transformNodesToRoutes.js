@@ -81,7 +81,7 @@ function transformNodes(data) {
   var nodes = JSON.parse(data);
 
   for (var i = 0; i < nodes.elements.length; i++) {
-    if (nodes.elements[i].type == 'relation') {
+    if (nodes.elements[i].type == 'relation' && nodes.elements[i].tags.route == 'bus') {
       var bus_stops = searchBusStops(nodes.elements[i].members, nodes);
 
       var route = {
