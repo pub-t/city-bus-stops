@@ -18,8 +18,7 @@ function TransformNodesToGeoJson(options) {
 
 util.inherits(TransformNodesToGeoJson, Duplex);
 
-TransformNodesToGeoJson.prototype._read = function readBytes(n) {
-};
+TransformNodesToGeoJson.prototype._read = function readBytes(n) {};
 
 TransformNodesToGeoJson.prototype._write = function (chunk, enc, cb) {
   if (this.readFlag === true) {

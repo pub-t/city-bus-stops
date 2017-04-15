@@ -9,7 +9,7 @@ describe('Result of the fetchCityBusStops function', function () {
   it('should be a stream', function () {
     var busStopsStream = fetchCityBusStops('Hrodna', config);
     expect(busStopsStream).to.be.an.instanceOf(stream);
-    });
+  });
   it('should contain field "URI"', function () {
     var busStopsStream = fetchCityBusStops('Hrodna', config);
     expect(busStopsStream).to.include.keys('uri');

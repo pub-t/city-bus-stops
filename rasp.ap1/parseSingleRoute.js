@@ -19,8 +19,7 @@ function ParseSingleRoute(options) {
 
 util.inherits(ParseSingleRoute, Duplex);
 
-ParseSingleRoute.prototype._read = function readBytes(n) {
-};
+ParseSingleRoute.prototype._read = function readBytes(n) {};
 
 ParseSingleRoute.prototype._write = function (chunk, enc, cb) {
   if (this.writeFlag === true) {
@@ -48,10 +47,10 @@ function parseSingleRoute(data) {
     var route = {
       tags: {
         from: bus_stops[0],
-        name: 'Атобус № ' +bus_nubmer + ': ' + bus_stops[0] + ' — ' + bus_stops[bus_stops.length-1],
+        name: 'Атобус № ' + bus_nubmer + ': ' + bus_stops[0] + ' — ' + bus_stops[bus_stops.length - 1],
         ref: bus_nubmer,
         route: 'bus',
-        to: bus_stops[bus_stops.length-1]
+        to: bus_stops[bus_stops.length - 1]
       },
       bus_stops: {
         bus_stops_count: bus_stops.length,
